@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Example</title>
+
+    <!-- 引入 manifest.json -->
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px #b38b00;
+            transition: background-color 0.3s;
+        }
+
+        button:active {
+            box-shadow: 0 2px #b38b00;
+            transform: translateY(2px);
+        }
+
+        button:hover {
+            background-color: #ffdb4d;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            .message {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, World! This is a simple PWA.</h1>
+
+    <!-- 添加互動按鈕 -->
+    <button id="alertButton">Click me for an alert</button>
+    <div id="messageBox" class="message hidden">Button clicked! This is an interactive PWA feature.</div>
+
+    <script>
+        // 註冊 Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch((error) => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+
+        // 按鈕的互動功能
+        document.getElementById('alertButton').addEventListener('click', () => {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
