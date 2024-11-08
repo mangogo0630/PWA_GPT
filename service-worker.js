@@ -1,10 +1,10 @@
 const CACHE_NAME = 'pwa-example-cache-v1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png'
+    './',
+    './index.html',
+    './manifest.json',
+    './icons/icon.png',
+    './icons/icon.png'
 ];
 
 // 在 install 事件中緩存所需的資源
